@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block content %}
+      <div class="container">
+        {% if True %}
+        <h1>{{ content_title }}</h1>
+        {% endif %}
+        <table class="table">
+  <tr>
+    <th>Content</th>
+    <th>Date Created</th>
+    <th>Actions</th>
+  </tr>
+  {% for task in tasks %}
+  <tr>
+    <td>{{ task.content }}</td>
+    <td>{{ task.date_created.date() }}</td>
+    <td><a class="btn btn-primary" href="/delete/{{ task.id }}">Delete</a><a class="btn btn-primary" href="/update/{{ task.id }}">Update</a></td>
+  </tr>
+  {% endfor %}
+</table>
+<form action="/" method="POST">
+  <input type="text" name="content" id="content">
+  <input type="submit" value="Add Task">
+</form>
+      </div>
+{% endblock %}
